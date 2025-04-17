@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/presentation/about/about_desktop.dart';
+import 'package:portfolio/constants/app_colors.dart';
+import 'package:portfolio/presentation/sections/home/main_desktop_section.dart';
+import 'package:portfolio/presentation/sections/home/sidebar_desktop_section.dart';
 
 class HomepageDesktop extends StatefulWidget {
   const HomepageDesktop({super.key});
@@ -11,33 +13,20 @@ class HomepageDesktop extends StatefulWidget {
 class _HomepageWebState extends State<HomepageDesktop> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // Left Bar
-        Flexible(
-          flex: 1,
-          child: Container(
-            color: Colors.cyan,
-            child: TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const AboutDesktop();
-                    },
-                  ),
-                );
-              },
+    return Scaffold(
+      backgroundColor: AppColors().black,
+      body: Container(
+        padding: EdgeInsets.only(left: 120, right: 120, top: 60),
+        child: Row(
+          children: [
+            // Left Section
+            Expanded(flex: 2, child: SidebarDesktopSection()),
 
-              child: Text("About"),
-            ),
-          ),
+            // Main Section
+            Expanded(flex: 7, child: MainDesktopSection()),
+          ],
         ),
-
-        // Main Scroll
-        Flexible(flex: 4, child: Container(color: Colors.amber)),
-      ],
+      ),
     );
   }
 }
